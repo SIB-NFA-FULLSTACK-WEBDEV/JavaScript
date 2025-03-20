@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Penyewaan Kendaraan</title>
+</head>
+
+<body>
+    <script>
+        // Class Kendaraan sebagai parent class
+        class Kendaraan {
+            constructor(nama, tipe) {
+                this.nama = nama;
+                this.tipe = tipe;
+            }
+
+            deskripsi() {
+                return `${this.nama} adalah kendaraan jenis ${this.tipe}.`;
+            }
+        }
+
+        // Class Pelanggan
+        class Pelanggan {
+            constructor(nama, nomorTelepon) {
+                this.nama = nama;
+                this.nomorTelepon = nomorTelepon;
+                this.kendaraanDisewa = null;
+            }
+
+            sewaKendaraan(kendaraan) {
+                this.kendaraanDisewa = kendaraan;
+            }
+        }
+
+        // Sistem Manajemen Penyewaan
+        class SistemPenyewaan {
+            constructor() {
+                this.daftarPelanggan = [];
+            }
+
+            tambahPelanggan(pelanggan, kendaraan) {
+                pelanggan.sewaKendaraan(kendaraan);
+                this.daftarPelanggan.push(pelanggan);
+            }
+
+            tampilkanPelanggan() {
+                console.log("Daftar Pelanggan yang Sedang Menyewa Kendaraan:");
+                this.daftarPelanggan.forEach((pelanggan, index) => {
+                    console.log(`${index + 1}. ${pelanggan.nama} (${pelanggan.nomorTelepon}) menyewa ${pelanggan.kendaraanDisewa.nama}.`);
+                });
+            }
+        }
+
+        // Contoh Penggunaan
+        const mobil = new Kendaraan("Toyota Avanza", "Mobil");
+        const motor = new Kendaraan("Honda Beat", "Motor");
+        const sepeda = new Kendaraan("Polygon Xtrada", "Sepeda");
+
+        const pelanggan1 = new Pelanggan("Bisma", "08123456789");
+        const pelanggan2 = new Pelanggan("Arka", "08987654321");
+        const pelanggan3 = new Pelanggan("Ramdhan, 08567890123");
+
+        const sistemPenyewaan = new SistemPenyewaan();
+        sistemPenyewaan.tambahPelanggan(pelanggan1, mobil);
+        sistemPenyewaan.tambahPelanggan(pelanggan2, motor);
+        sistemPenyewaan.tambahPelanggan(pelanggan3, sepeda);
+
+        // Menampilkan daftar pelanggan yang sedang menyewa kendaraan
+        sistemPenyewaan.tampilkanPelanggan();
+    </script>
+</body>
+</html>
