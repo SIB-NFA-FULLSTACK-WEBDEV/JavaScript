@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP JS</title>
+</head>
+
+<body>
+    <script>
+        let produkList = [
+            { id: 1, nama: "Laptop", harga: 12000000 },
+            { id: 2, nama: "Smartphone", harga: 5000000 },
+            { id: 3, nama: "Tablet", harga: 15000000 },
+            { id: 4, nama: "Monitor", harga: 20000000 },
+            { id: 5, nama: "Keyboard", harga: 17000000 }
+        ];
+
+        //Menambahkan Produk
+        function tambahProduk(id, nama, harga) {
+            produkList = [...produkList, { id, nama, harga }];
+        }
+
+        //Menghapus produk
+        function hapusProduk(id) {
+            produkList = produkList.filter(produk => produk.id !== id);
+        }
+
+        //Menampilkan Produk
+        function tampilkanProduk() {
+            console.log("Daftar Produk: ");
+            produkList.forEach(({ id, nama, harga }) => {
+                console.log(`ID: ${id}, Nama: ${nama}, Harga: ${harga}`);
+            });
+        }
+
+        //Event Handler
+        const eventHandler = {
+            tambah: (id, nama, harga) => tambahProduk(id, nama, harga),
+            hapus: (id) => hapusProduk(id),
+            tampilkan: () => tampilkanProduk()
+        };
+
+        //Penggunaan 
+        eventHandler.tampilkan(); //menampilkan produk awal
+        eventHandler.tambah(6, "Earphone", 1000000); //menambah produk
+        eventHandler.tampilkan(); //menampilkan produk setelah ditambah
+        eventHandler.hapus(3); //menghapus produk dengan id 3
+        eventHandler.tampilkan(); //menampilkan produk setelah id 3 dihapus
+    </script>
+</body>
+
+</html>
