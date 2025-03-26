@@ -5,7 +5,7 @@ import users from './data.mjs';
 const index = () => {
     console.log("Menampilkan data");
     users.map((user, index) => {
-        console.log(`${index+1}. ${user.nama} - ${user.umur} - ${user.alamat}`);
+        console.log(`${index+1}. ${user.nama} - ${user.umur} - ${user.alamat} - ${user.email}`);
     });
 }
 
